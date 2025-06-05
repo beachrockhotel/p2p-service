@@ -1,0 +1,7 @@
+---
+- name: Deploy services
+  hosts: localhost
+  tasks:
+    - name: Echo deployment step
+      debug:
+        msg: "Deploy stage executed"
