@@ -1,7 +1,13 @@
 ---
-- name: Deploy services
+- name: Deploy P2P Services
   hosts: localhost
   tasks:
-    - name: Echo deployment step
-      debug:
-        msg: "Deploy stage executed"
+    - name: Stop docker-compose services
+      shell: docker-compose down
+      args:
+        chdir: "{{ lookup('env', 'WORKSPACE') }}"
+
+    - name: Start docker-compose services
+      shell: docker-compose up -d
+      args:
+        chdir: "{{ lookup('env', 'WORKSPACE') }}"
