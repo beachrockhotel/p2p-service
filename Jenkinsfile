@@ -1,7 +1,3 @@
-environment {
-  PATH = "/usr/bin:/usr/sbin:/bin:/sbin:/usr/local/bin"
-}
-
 pipeline {
   agent any
   stages {
@@ -12,7 +8,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        sh 'ansible-playbook ./ansible/deploy.yml'
+        sh 'ansible-playbook ansible/deploy.yml'
       }
     }
     stage('Monitor') {
