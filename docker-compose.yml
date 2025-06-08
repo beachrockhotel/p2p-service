@@ -28,6 +28,28 @@ services:
     networks:
       - monitor-net
 
+  redmine:
+    image: redmine
+    restart: always
+    ports:
+      - "3001:3000"
+    environment:
+      REDMINE_DB_MYSQL: db
+      REDMINE_DB_PASSWORD: my_password
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: my_password
+      MYSQL_DATABASE: redmine
+      MYSQL_USER: redmine
+      MYSQL_PASSWORD: my_password
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+
 
 networks:
   monitor-net:
